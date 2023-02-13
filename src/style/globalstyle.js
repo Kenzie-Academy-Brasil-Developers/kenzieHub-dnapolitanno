@@ -13,8 +13,19 @@ export const GlobalStyle = createGlobalStyle`
         --color-white: #ffffff;
         
         --color-back-modal: rgba(18, 18, 20, 0.5);
+
+        --font-size-0: 1.5rem;
+        --font-size-1: 1.375rem;
+        --font-size-2: 1.25rem;
+        --font-size-3: 1.125rem;
+        --font-size-4: 1rem;
+        --font-size-5: 0.875rem;
+        --font-size-6: 0.75rem;
+        --font-size-7: 0.625rem;
+        --font-size-8: 0.5rem;
         
         --font-family: 'Inter', sans-serif;
+
     }
 
     * {
