@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 export const Modalcontainer = styled.section`
   width: 369px;
-  height: 342px;
+  height: max-content;
 
-  background: #212529;
+  background: var(--color-grey-3);
 
   .headerTechs {
     display: flex;
@@ -19,7 +19,7 @@ export const Modalcontainer = styled.section`
     width: 369px;
     height: 50px;
 
-    background: #343b41;
+    background: var(--color-grey-2);
   }
 
   button {
@@ -29,7 +29,7 @@ export const Modalcontainer = styled.section`
 
     background: transparent;
 
-    color: #868e96;
+    color: var(--color-grey-1);
   }
 
   h4 {
@@ -37,7 +37,7 @@ export const Modalcontainer = styled.section`
     font-size: 14px;
     line-height: 24px;
 
-    color: #f8f9fa;
+    color: var(--color-grey-0);
   }
 
   form {
@@ -67,10 +67,16 @@ export const Modalcontainer = styled.section`
 
     color: var(--color-white);
 
-    background: var(--color-primary-negative);
+    background: var(--color-primary);
 
-    border: 1px solid var(--color-primary-negative);
+    border: 1px solid var(--color-primary);
     border-radius: 4px;
+  }
+
+  .updateBtn:hover {
+    background: var(--color-primary-focus);
+
+    border: var(--color-primary-focus);
   }
 
   .deleteBtn {
@@ -96,6 +102,12 @@ export const Modalcontainer = styled.section`
     border-radius: 4px;
   }
 
+  .deleteBtn:hover {
+    background: var(--color-grey-2);
+
+    border: var(--color-grey-2);
+  }
+
   .registerBtn {
     display: flex;
     flex-direction: row;
@@ -105,7 +117,7 @@ export const Modalcontainer = styled.section`
 
     padding: 0 22px;
 
-    width: 324px;
+    width: 100%;
     height: 48px;
 
     font-weight: 500;
@@ -117,5 +129,11 @@ export const Modalcontainer = styled.section`
 
     border: 1px solid var(--color-primary);
     border-radius: 4px;
+  }
+
+  .registerBtn:hover {
+    background: var(--color-grey-2);
+
+    border: var(--color-grey-2);
   }
 `;

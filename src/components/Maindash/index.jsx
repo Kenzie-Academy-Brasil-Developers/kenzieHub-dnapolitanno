@@ -9,18 +9,29 @@ import { useEffect } from "react";
 export const Maindash = () => {
   const [techs, setTechs] = useState([]);
 
-  useEffect(() => {
-    async function RequiredTechs() {
-      try {
-        const { data } = await api.get("/profile", {
-          headers: { Authorization: `Bearer ${localStorage.Token}` },
-        });
+  async function RequiredTechs() {
+    try {
+      const { data } = await api.get("/profile", {
+        headers: { Authorization: `Bearer ${localStorage.Token}` },
+      });
 
-        setTechs(data.techs);
-      } catch (error) {
-        return error;
-      }
+      setTechs(data.techs);
+    } catch (error) {
+      return error;
     }
+  }
+
+  useEffect(() => {
+    // async function RequiredTechs() {
+    //   try {
+    //     const { data } = await api.get("/profile", {
+    //       headers: { Authorization: `Bearer ${localStorage.Token}` },
+    //     });
+    //     setTechs(data.techs);
+    //   } catch (error) {
+    //     return error;
+    //   }
+    // }
     RequiredTechs();
   }, []);
 
@@ -35,8 +46,7 @@ export const Maindash = () => {
               name={title}
               status={status}
               techId={id}
-              techs={techs}
-              setTechs={setTechs}
+              RequiredTechs={RequiredTechs}
             />
           ))
         ) : (

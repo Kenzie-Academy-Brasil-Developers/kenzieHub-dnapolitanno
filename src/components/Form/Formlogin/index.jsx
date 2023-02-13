@@ -8,7 +8,7 @@ import { Forms } from "../../../style/form.js";
 import { loginSchema } from "./loginschema.jsx";
 import { requestLogin } from "../../../services/login.js";
 
-export const Formlogin = ({ user, setUser }) => {
+export const Formlogin = ({ setUser }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 

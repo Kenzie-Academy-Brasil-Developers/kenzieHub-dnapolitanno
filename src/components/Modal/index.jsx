@@ -31,7 +31,7 @@ export const HeaderTechs = ({ setTechs }) => {
   });
 
   const techsRequest = async (formData) => {
-    await createTech(formData, setTechs);
+    await createTech(formData, setTechs, handleClose);
   };
 
   return (

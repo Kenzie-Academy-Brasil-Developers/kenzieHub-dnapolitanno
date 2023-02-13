@@ -7,16 +7,15 @@ import { Select } from "../Select";
 import { Modalcontainer } from "../../style/modal";
 import { UpdateTech } from "../../services/updatetechs";
 import { DeleteTechRequest } from "../../services/deletetechs";
-import zIndex from '@mui/material/styles/zIndex';
 
 export const ComponentsListTechs = ({
   name,
   status,
   techId,
-  techs,
-  setTechs,
+  RequiredTechs,
 }) => {
   const [open, setOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -48,14 +47,15 @@ export const ComponentsListTechs = ({
             <button onClick={handleClose}>X</button>
           </div>
           <form
-            onSubmit={handleSubmit((data) => UpdateTech(data, techs[0].id))}
+            onSubmit={handleSubmit((data) =>
+              UpdateTech(data, techId, RequiredTechs, handleClose)
+            )}
           >
             <Input
               type="text"
-              placeholder="Nome do projeto"
+              placeholder={name}
               label="Nome"
-              {...register("title")}
-              errors={errors.title?.message}
+              disabled="disabled"
             />
             <Select
               id="select-techs"
@@ -73,8 +73,8 @@ export const ComponentsListTechs = ({
               </button>
               <button
                 className="deleteBtn"
-                type="submit"
-                onClick={() => DeleteTechRequest(techId, setTechs)}
+                type="button"
+                onClick={() => DeleteTechRequest(techId, RequiredTechs)}
               >
                 Excluir
               </button>
