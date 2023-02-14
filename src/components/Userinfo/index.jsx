@@ -1,9 +1,10 @@
-import { useEffect } from "react";
-import { Userloged } from "../../services/user";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../contexts/UserContext";
+
 import { HeaderContainer } from "./style";
 
-export const Userinfo = ({ user, setUser }) => {
-  Userloged(setUser);
+export const Userinfo = () => {
+  const { user } = useContext(UserContext);
 
   return (
     <HeaderContainer>

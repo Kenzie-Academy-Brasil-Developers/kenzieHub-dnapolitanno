@@ -1,43 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { api } from "../../services/api";
 import { ComponentsListTechs } from "../Listechs";
 import { HeaderTechs } from "../Modal";
 import { Container, Usercomp } from "./style";
 
 import { useEffect } from "react";
+import { TechContext } from "../../contexts/TechContext";
 
 export const Maindash = () => {
-  const [techs, setTechs] = useState([]);
-
-  async function RequiredTechs() {
-    try {
-      const { data } = await api.get("/profile", {
-        headers: { Authorization: `Bearer ${localStorage.Token}` },
-      });
-
-      setTechs(data.techs);
-    } catch (error) {
-      return error;
-    }
-  }
+  const { RequiredTechs, techs } = useContext(TechContext);
 
   useEffect(() => {
-    // async function RequiredTechs() {
-    //   try {
-    //     const { data } = await api.get("/profile", {
-    //       headers: { Authorization: `Bearer ${localStorage.Token}` },
-    //     });
-    //     setTechs(data.techs);
-    //   } catch (error) {
-    //     return error;
-    //   }
-    // }
     RequiredTechs();
   }, []);
 
   return (
     <Container>
-      <HeaderTechs setTechs={setTechs} />
+      <HeaderTechs />
       <Usercomp>
         {techs.length ? (
           techs.map(({ title, status, id }) => (
@@ -46,7 +25,6 @@ export const Maindash = () => {
               name={title}
               status={status}
               techId={id}
-              RequiredTechs={RequiredTechs}
             />
           ))
         ) : (

@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
 
 import { Input } from "../../Input";
 import { Select } from "../../Select";
-import { registertest } from "../../../services/register.js";
 import { registerSchema } from "./registerschema";
 
 import { Forms } from "../../../style/form.js";
+import { UserContext } from "../../../contexts/UserContext";
 
 export const Registerform = () => {
-  const [registerUser, setRegisterUser] = useState(false);
-  const navigate = useNavigate();
+  const { requestRegister } = useContext(UserContext);
 
   const {
     register,
@@ -25,15 +23,8 @@ export const Registerform = () => {
 
   const requestRegisterApi = async (formData) => {
     delete formData.passwordconfirm;
-    await registertest(formData, setRegisterUser);
+    await requestRegister(formData);
   };
-
-  useEffect(() => {
-    if (registerUser) {
-      navigate("/");
-      setRegisterUser(false);
-    }
-  }, [registerUser]);
 
   return (
     <Forms onSubmit={handleSubmit(requestRegisterApi)}>

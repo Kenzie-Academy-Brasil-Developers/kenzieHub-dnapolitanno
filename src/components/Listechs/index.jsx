@@ -1,19 +1,14 @@
 import { Dialog } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { Modalcontainer } from "../../style/modal";
-import { UpdateTech } from "../../services/updatetechs";
-import { DeleteTechRequest } from "../../services/deletetechs";
+import { TechContext } from "../../contexts/TechContext";
 
-export const ComponentsListTechs = ({
-  name,
-  status,
-  techId,
-  RequiredTechs,
-}) => {
+export const ComponentsListTechs = ({ name, status, techId }) => {
+  const { UpdateTech, DeleteTechRequest } = useContext(TechContext);
   const [open, setOpen] = useState(false);
 
   const {
@@ -48,7 +43,7 @@ export const ComponentsListTechs = ({
           </div>
           <form
             onSubmit={handleSubmit((data) =>
-              UpdateTech(data, techId, RequiredTechs, handleClose)
+              UpdateTech(data, techId, handleClose)
             )}
           >
             <Input
@@ -74,7 +69,7 @@ export const ComponentsListTechs = ({
               <button
                 className="deleteBtn"
                 type="button"
-                onClick={() => DeleteTechRequest(techId, RequiredTechs)}
+                onClick={() => DeleteTechRequest(techId)}
               >
                 Excluir
               </button>

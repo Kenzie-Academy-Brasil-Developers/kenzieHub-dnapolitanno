@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
 
 import { Input } from "../../Input";
 import { Forms } from "../../../style/form.js";
 import { loginSchema } from "./loginschema.jsx";
-import { requestLogin } from "../../../services/login.js";
+import { UserContext } from "../../../contexts/UserContext";
 
-export const Formlogin = ({ setUser }) => {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+export const Formlogin = () => {
+  const { requestLogin } = useContext(UserContext);
 
   const {
     register,
@@ -21,19 +19,8 @@ export const Formlogin = ({ setUser }) => {
     resolver: yupResolver(loginSchema),
   });
 
-  const loginUser = async (formData) => {
-    await requestLogin(formData, setLoading, setUser);
-  };
-
-  useEffect(() => {
-    if (loading) {
-      navigate("/dashboard");
-      setLoading(false);
-    }
-  }, [loading]);
-
   return (
-    <Forms onSubmit={handleSubmit(loginUser)}>
+    <Forms onSubmit={handleSubmit((data) => requestLogin(data))}>
       <Input
         type="email"
         placeholder="Digite aqui seu email"

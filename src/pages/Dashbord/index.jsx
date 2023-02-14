@@ -2,11 +2,11 @@ import { Navbar } from "../../components/Navbar";
 import { Userinfo } from "../../components/Userinfo";
 import { Maindash } from "../../components/Maindash";
 
-export const Dashboard = ({ user, setUser }) => {
+export const Dashboard = () => {
   return (
     <>
-      <Navbar setUser={setUser} />
-      <Userinfo user={user} setUser={setUser} />
+      <Navbar />
+      <Userinfo />
       <Maindash />
     </>
   );

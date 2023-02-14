@@ -10,20 +10,20 @@ import { GlobalStyle } from "./style/globalstyle";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <GlobalStyle />
-      <App />
-      <ToastContainer
-        position="top-center"
-        autoClose={1800}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+    <GlobalStyle />
+    <App />
+    <ToastContainer
+      position="top-center"
+      autoClose={1800}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+    />
     </BrowserRouter>
   </React.StrictMode>
 );

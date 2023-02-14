@@ -1,11 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { TechContext } from "../../contexts/TechContext";
+import { UserContext } from "../../contexts/UserContext";
 import { NavbarContainer } from "./style";
 
-export const Navbar = ({ setUser }) => {
-  const logOut = () => {
-    setUser({});
-    localStorage.clear();
-  };
+export const Navbar = () => {
+  const { logOut } = useContext(UserContext);
 
   return (
     <NavbarContainer>
