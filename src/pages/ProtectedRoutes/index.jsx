@@ -4,6 +4,6 @@ import { UserContext } from "../../contexts/UserContext";
 
 export const ProtectedRoutes = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
+
   return <>{user ? <Outlet /> : <Navigate to="/" />}</>;
 };
