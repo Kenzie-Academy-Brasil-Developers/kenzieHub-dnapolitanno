@@ -8,10 +8,9 @@ export const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [registerUser, setRegisterUser] = useState(false);
-  const [loadWaitScreen, setLoadWaitScreen] = useState(true);
 
   const requestLogin = async (formData) => {
     try {
@@ -34,7 +33,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setUser({});
+    setUser(null);
     localStorage.removeItem("Token");
     localStorage.removeItem("Id");
     navigate("/");
@@ -63,24 +62,20 @@ export const UserProvider = ({ children }) => {
 
       try {
         if (localStorage.Token) {
-          navigate("/dashboard");
           const { data } = await api.get(`/users/${id}`, {
             headers: { Authorization: `Bearer ${localStorage.Token}` },
           });
 
+          navigate("/dashboard");
           setUser(data);
-          setLoadWaitScreen(false);
-        } else {
-          navigate("/");
         }
       } catch (error) {
-        setLoadWaitScreen(true);
         localStorage.clear();
         return error;
       }
     };
     requestUser();
-  }, [navigate]);
+  }, []);
 
   return (
     <UserContext.Provider
